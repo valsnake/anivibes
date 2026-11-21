@@ -2,20 +2,63 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Anivibes — аниме на вечер</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ANIVIBES — аниме на вечер</title>
   <meta name="description"
     content="Рандомайзер подбора аниме для тех, кому сложно определиться."/>
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/main.css" />
   <script src="js/script.js" defer></script>
 </head>
-
+</head>
 <body>
-  <main>
-    <h1>Не выбирай аниме часами. Доверься случаю.</h1>
-    <p>Подбери аниме на вечер под своё настроение.</p>
-    <button type="button" id="random-button">Подобрать аниме</button>
+  <a class="skip-link" href="#main-content">Перейти к содержимому</a>
+
+  <header class="site-header container glass">
+    <a class="brand" href="index.html" aria-label="ANIVIBES — главная">
+      <img src="assets/images/logo.svg" alt="ANIVIBES" width="2012" height="475">
+    </a>
+
+    <!-- Форма поиска с подсказками -->
+    <div class="header-search-placeholder" aria-hidden="true"></div>
+
+    <nav class="site-nav" aria-label="Основная навигация">
+      <a href="index.html" aria-current="page">Подбор</a>
+      <a href="catalog.html">Каталог</a>
+    </nav>
+  </header>
+
+  <main id="main-content" class="container">
+    <div class="home-overview">
+      <section class="home-hero" aria-labelledby="home-title">
+        <h1 id="home-title">Не выбирай часами<br><span class="headline-accent">Доверься случаю</span></h1>
+        <p>Не знаете, с чего начать? Доверьтесь случайному подбору и откройте для себя новое аниме. А если хочется чего-то определённого, настройте фильтры по жанру, типу, настроению и длительности.</p>
+      </section>
+
+      <!-- Заготовка карточки рекомендации -->
+      <section class="recommendation glass" aria-label="Место для рекомендации аниме">
+        <div class="poster-placeholder" aria-hidden="true"></div>
+        <div class="placeholder-copy" aria-hidden="true">
+          <div class="skeleton-line skeleton-line--title"></div>
+          <div class="skeleton-line"></div>
+          <div class="skeleton-line skeleton-line--short"></div>
+          <div class="skeleton-line skeleton-line--tag"></div>
+          <div class="placeholder-button"></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Сетки фильтров -->
+    <section class="filter-panel glass" aria-label="Место для фильтров">
+      <div class="filter-placeholder"><span>Жанры</span><div class="placeholder-control" aria-hidden="true"></div></div>
+      <div class="filter-placeholder"><span>Тип</span><div class="placeholder-control" aria-hidden="true"></div></div>
+      <div class="filter-placeholder"><span>Настроение</span><div class="placeholder-control" aria-hidden="true"></div></div>
+      <div class="filter-placeholder"><span>Длительность</span><div class="placeholder-control" aria-hidden="true"></div></div>
+    </section>
   </main>
+
+  <footer class="site-footer container">
+    <p>ANIVIBES · <span id="current-year">2026</span></p>
+    <p>Автор проекта · <span id="current-name">VAL POLOZ</span></p>
+  </footer>
 </body>
 </html>

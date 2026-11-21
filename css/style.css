@@ -175,7 +175,8 @@ img {
 
 .filter-panel {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr)) auto;
+  align-items: end;
   gap: 24px;
   padding: 24px;
 }
@@ -192,6 +193,85 @@ img {
   border-radius: 14px; 
   background: rgba(255, 255, 255, 0.5); 
 }
+
+/* Карточка: размеры и цвета */
+.recommendation { background: rgba(217, 210, 248, 0.33); 
+}
+
+.recommendation[hidden] { 
+  display: none; 
+}
+
+.recommendation-poster { 
+  width: 100%; aspect-ratio: 3 / 4; 
+  object-fit: cover; 
+  border-radius: 14px; 
+}
+
+.recommendation-copy { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 10px; 
+  min-width: 0; 
+  min-height: 400px; 
+}
+
+.recommendation-copy > p { 
+  color: var(--muted); 
+  font-size: 14px; 
+  line-height: 20px; 
+}
+
+.recommendation-copy .recommendation-meta { 
+  align-self: flex-start; 
+  padding: 2px 10px; 
+  border-radius: 24px; 
+  background: rgba(198, 194, 242, 0.32); 
+  color: #433c63; 
+  font-size: 12px; 
+}
+
+.selection-panel { 
+  display: flex; 
+  justify-content: flex-end; 
+  padding: 24px; 
+}
+
+.button { 
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center; 
+  gap: 12px; 
+  min-height: 48px; 
+  padding: 10px 24px; 
+  border-radius: 17px; 
+  font: 700 17px/1.35 "Manrope", sans-serif; 
+  cursor: pointer; 
+}
+
+.button--primary { 
+  color: #30351f; 
+  background: var(--lime); 
+  border: 1px solid rgba(255,255,255,.95); 
+  box-shadow: inset 0 3px 5px rgba(255,255,255,.65),inset 0 -3px 5px rgba(123,136,52,.16),0 7px 18px rgba(120,132,51,.2); 
+}
+
+.button--primary:hover { 
+  background: #e1e69a; 
+}
+
+.button:disabled { 
+  opacity: 0.6;
+  cursor: default; 
+}
+
+.selection-status { 
+  min-height: 24px; 
+  margin-top: 12px; 
+  color: var(--muted); 
+  font-size: 14px; 
+}
+
 
 /* Контент */
 .poster-placeholder {

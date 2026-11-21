@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Карточка аниме — ANIVIBES</title>
+    <meta name="description"
+    content="Карточка аниме со своим настроением и жанром."/>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Перейти к содержимому</a>
+
+  <header class="site-header container glass">
+    <a class="brand" href="index.html" aria-label="ANIVIBES — главная">
+      <img src="assets/images/logo.svg" alt="ANIVIBES" width="2012" height="475">
+    </a>
+
+    <!-- Форма поиска с подсказками -->
+    <div class="header-search-placeholder" aria-hidden="true"></div>
+
+    <nav class="site-nav" aria-label="Основная навигация">
+      <a href="index.html">Подбор</a>
+      <a href="catalog.html">Каталог</a>
+    </nav>
+  </header>
+
+  <main id="main-content" class="container inner-page">
+    <a class="back-link" href="catalog.html">← К каталогу</a>
+    <h1 class="visually-hidden">Карточка аниме</h1>
+
+    <!-- Постер, описание, характеристики и кнопки списков -->
+    <section class="anime-details glass" aria-label="Место для информации об аниме">
+      <div class="poster-placeholder" aria-hidden="true"></div>
+      <div class="placeholder-copy" aria-hidden="true">
+          <div class="skeleton-line skeleton-line--title"></div>
+          <div class="skeleton-line"></div>
+          <div class="skeleton-line skeleton-line--short"></div>
+          <div class="skeleton-line skeleton-line--tag"></div>
+          <div class="placeholder-button"></div>
+        </div>
+    </section>
+
+    <!-- Аккордеон с нумерацией выпусков -->
+    <section class="parts-section glass" aria-labelledby="parts-title">
+      <h2 id="parts-title">Сезоны и выпуски</h2>
+      <div class="part-placeholder">Сезоны</div>
+      <div class="part-placeholder">Фильмы</div>
+      <div class="part-placeholder">OVA и дополнения</div>
+    </section>
+
+    <section class="related-section" aria-labelledby="related-title">
+      <h2 id="related-title">В похожем настроении</h2>
+      <!-- Карточки похожих аниме -->
+      <div class="related-grid">
+      <div class="related-placeholder glass" aria-hidden="true"><div class="poster-placeholder"></div><div class="skeleton-line"></div></div>
+      <div class="related-placeholder glass" aria-hidden="true"><div class="poster-placeholder"></div><div class="skeleton-line"></div></div>
+      <div class="related-placeholder glass" aria-hidden="true"><div class="poster-placeholder"></div><div class="skeleton-line"></div></div>
+      <div class="related-placeholder glass" aria-hidden="true"><div class="poster-placeholder"></div><div class="skeleton-line"></div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer container">
+    <p>ANIVIBES · <span id="current-year">2026</span></p>
+    <p>Автор проекта · <span id="current-name">VAL POLOZ</span></p>
+  </footer>
+</body>
+</html>

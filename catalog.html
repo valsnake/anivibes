@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Каталог аниме — ANIVIBES</title>
+    <meta name="description"
+    content="Каталог аниме для тех, кому сложно определиться."/>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Перейти к содержимому</a>
+
+  <header class="site-header container glass">
+    <a class="brand" href="index.html" aria-label="ANIVIBES — главная">
+      <img src="assets/images/logo.svg" alt="ANIVIBES" width="2012" height="475">
+    </a>
+
+    <!-- Форма поиска с подсказками. -->
+    <div class="header-search-placeholder" aria-hidden="true"></div>
+
+    <nav class="site-nav" aria-label="Основная навигация">
+      <a href="index.html">Подбор</a>
+      <a href="catalog.html" aria-current="page">Каталог</a>
+    </nav>
+  </header>
+
+  <main id="main-content" class="container inner-page">
+    <h1 class="page-title">Каталог аниме</h1>
+
+    <!-- Сетка фильтров -->
+    <section class="filter-panel glass" aria-label="Место для фильтров">
+      <div class="filter-placeholder"><span>Жанры</span><div class="placeholder-control" aria-hidden="true"></div></div>
+      <div class="filter-placeholder"><span>Тип</span><div class="placeholder-control" aria-hidden="true"></div></div>
+      <div class="filter-placeholder"><span>Настроение</span><div class="placeholder-control" aria-hidden="true"></div></div>
+      <div class="filter-placeholder"><span>Длительность</span><div class="placeholder-control" aria-hidden="true"></div></div>
+    </section>
+
+    <!-- Сетка каталога -->
+    <section class="catalog-grid" aria-label="Место для каталога аниме">
+      <article class="catalog-placeholder glass" aria-label="Место для карточки аниме">
+        <div class="poster-placeholder" aria-hidden="true"></div>
+        <div class="placeholder-copy" aria-hidden="true">
+          <div class="skeleton-line skeleton-line--title"></div>
+          <div class="skeleton-line"></div>
+          <div class="skeleton-line skeleton-line--short"></div>
+          <div class="skeleton-line skeleton-line--tag"></div>
+          <div class="placeholder-button"></div>
+        </div>
+      </article>
+      <article class="catalog-placeholder glass" aria-label="Место для карточки аниме">
+        <div class="poster-placeholder" aria-hidden="true"></div>
+        <div class="placeholder-copy" aria-hidden="true">
+          <div class="skeleton-line skeleton-line--title"></div>
+          <div class="skeleton-line"></div>
+          <div class="skeleton-line skeleton-line--short"></div>
+          <div class="skeleton-line skeleton-line--tag"></div>
+          <div class="placeholder-button"></div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer container">
+    <p>ANIVIBES · <span id="current-year">2026</span></p>
+    <p>Автор проекта · <span id="current-name">VAL POLOZ</span></p>
+  </footer>
+</body>
+</html>

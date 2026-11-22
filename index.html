@@ -7,6 +7,8 @@
   <meta name="description"
     content="Рандомайзер подбора аниме для тех, кому сложно определиться."/>
   <link rel="stylesheet" href="css/style.css" />
+  <script src="js/anime-data.js" defer></script>
+  <script src="js/storage.js" defer></script>
   <script src="js/script.js" defer></script>
 </head>
 <body>
@@ -43,21 +45,67 @@
           <h2 id="featured-title">Монолог фармацевта</h2>
           <p id="anime-description">Маомао оказывается при императорском дворе и раскрывает опасные тайны благодаря знаниям о лекарствах и ядах.</p>
           <p id="featured-meta" class="recommendation-meta">Сериал · Драма</p>
+          <div class="recommendation-actions">
+            <button id="save-anime" class="button button--outline" type="button" aria-pressed="false">Отложить</button>
+            <button id="watch-anime" class="button button--outline" type="button" aria-pressed="false">Просмотрено</button>
+          </div>
         </div>
       </article>
+      <section id="selection-empty" class="selection-empty glass" hidden aria-labelledby="empty-title">
+        <h2 id="empty-title">Ничего не нашлось</h2>
+        <p>Попробуйте убрать один из фильтров или сбросить условия.</p>
+        <p>Просмотренные аниме не участвуют в подборе. Вернуть их можно в списке ниже.</p>
+        <button class="button button--outline" type="button" id="reset-empty">Сбросить условия</button>
+      </section>
     </div>
 
     <!-- Фильтры и кнопка -->
-    <section class="filter-panel glass" aria-label="Подбор аниме">
-      <div class="filter-placeholder"><span>Жанры</span><div class="placeholder-control" aria-hidden="true"></div></div>
-      <div class="filter-placeholder"><span>Тип</span><div class="placeholder-control" aria-hidden="true"></div></div>
-      <div class="filter-placeholder"><span>Настроение</span><div class="placeholder-control" aria-hidden="true"></div></div>
-      <div class="filter-placeholder"><span>Длительность</span><div class="placeholder-control" aria-hidden="true"></div></div>
+    <section id="selection-form" class="selection-panel filter-panel glass" aria-label="Подбор аниме">
+      <label class="filter"><span>Жанры</span><select name="genre"><option value="">Любой жанр</option></select></label>
+      <label class="filter"><span>Тип</span><select name="type"><option value="">Любой тип</option></select></label>
+      <label class="filter"><span>Настроение</span><select name="mood"><option value="">Любое</option></select></label>
+      <label class="filter"><span>Длительность</span><select name="duration"><option value="">Любая</option></select></label>
       <button id="random-button" class="button button--primary" type="button">
         <img src="assets/icons/shuffle.svg" alt="" width="23" height="23">
         Подобрать аниме
       </button>
+      <details class="advanced-filters glass">
+        <summary>
+          <img class="disclosure-chevron" src="assets/icons/chevron-down.svg" alt="" width="21" height="21">
+          <span>Дополнительные фильтры</span>
+          <span class="disclosure-action"><span class="when-closed">Открыть</span><span class="when-open">Свернуть</span></span>
+        </summary>
+        <div class="advanced-filters__grid">
+          <label class="filter"><span>Тематика</span><select name="theme"><option value="">Любая тематика</option></select></label>
+          <label class="filter"><span>Производство</span><select name="production"><option value="">Любое производство</option></select></label>
+          <label class="filter"><span>Год выхода</span><select name="era"><option value="">Любой период</option></select></label>
+          <label class="filter"><span>Форматы в истории</span><select name="composition"><option value="">Все форматы</option></select></label>
+          <label class="filter"><span>Статус</span><select name="partState"><option value="">Любой статус</option></select></label>
+        </div>
+      </details>
+      <div class="selection-tools">
+        <p id="match-count" role="status" aria-live="polite"></p>
+        <button class="text-button" type="button">Сбросить фильтры</button>
+      </div>
     </section>
+    <p id="selection-status" class="selection-status" role="status" aria-live="polite" aria-atomic="true"></p>
+    
+    <details class="saved-lists glass">
+      <summary>Мои списки <span id="library-count">0</span></summary>
+      <p id="storage-status" class="selection-status" role="status"></p>
+      <div class="saved-lists__grid">
+        <section aria-labelledby="saved-title">
+          <h2 id="saved-title">Отложенное</h2>
+          <p id="saved-empty">Здесь пока пусто.</p>
+          <ul id="saved-list"></ul>
+        </section>
+        <section aria-labelledby="watched-title">
+          <h2 id="watched-title">Просмотрено</h2>
+          <p id="watched-empty">Здесь пока пусто.</p>
+          <ul id="watched-list"></ul>
+        </section>
+      </div>
+    </details>
   </main>
 
     <!-- Подвал -->

@@ -7,7 +7,9 @@
     <meta name="description"
     content="Каталог аниме для тех, кому сложно определиться."/>
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/anime-data.js" defer></script>
   <script src="js/script.js" defer></script>
+  <script src="js/catalog.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Перейти к содержимому</a>
@@ -37,29 +39,9 @@
       <div class="filter-placeholder"><span>Длительность</span><div class="placeholder-control" aria-hidden="true"></div></div>
     </section>
 
-    <!-- Сетка каталога -->
-    <section class="catalog-grid" aria-label="Место для каталога аниме">
-      <article class="catalog-placeholder glass" aria-label="Место для карточки аниме">
-        <div class="poster-placeholder" aria-hidden="true"></div>
-        <div class="placeholder-copy" aria-hidden="true">
-          <div class="skeleton-line skeleton-line--title"></div>
-          <div class="skeleton-line"></div>
-          <div class="skeleton-line skeleton-line--short"></div>
-          <div class="skeleton-line skeleton-line--tag"></div>
-          <div class="placeholder-button"></div>
-        </div>
-      </article>
-      <article class="catalog-placeholder glass" aria-label="Место для карточки аниме">
-        <div class="poster-placeholder" aria-hidden="true"></div>
-        <div class="placeholder-copy" aria-hidden="true">
-          <div class="skeleton-line skeleton-line--title"></div>
-          <div class="skeleton-line"></div>
-          <div class="skeleton-line skeleton-line--short"></div>
-          <div class="skeleton-line skeleton-line--tag"></div>
-          <div class="placeholder-button"></div>
-        </div>
-      </article>
-    </section>
+    <p id="catalog-count" class="catalog-count"></p>
+    <section id="catalog-grid" class="catalog-grid" aria-label="Каталог аниме"></section>
+    <p id="catalog-empty" class="catalog-empty glass" hidden>В каталоге пока нет аниме.</p>
   </main>
 
   <footer class="site-footer container">

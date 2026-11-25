@@ -8,6 +8,7 @@
     content="Рандомайзер подбора аниме для тех, кому сложно определиться."/>
   <link rel="stylesheet" href="css/style.css" />
   <script src="js/anime-data.js" defer></script>
+  <script src="js/filters.js" defer></script>
   <script src="js/storage.js" defer></script>
   <script src="js/script.js" defer></script>
 </head>
@@ -61,28 +62,10 @@
 
     <!-- Фильтры и кнопка -->
     <section id="selection-form" class="selection-panel filter-panel glass" aria-label="Подбор аниме">
-      <label class="filter"><span>Жанры</span><select name="genre"><option value="">Любой жанр</option></select></label>
-      <label class="filter"><span>Тип</span><select name="type"><option value="">Любой тип</option></select></label>
-      <label class="filter"><span>Настроение</span><select name="mood"><option value="">Любое</option></select></label>
-      <label class="filter"><span>Длительность</span><select name="duration"><option value="">Любая</option></select></label>
       <button id="random-button" class="button button--primary" type="button">
         <img src="assets/icons/shuffle.svg" alt="" width="23" height="23">
         Подобрать аниме
       </button>
-      <details class="advanced-filters glass">
-        <summary>
-          <img class="disclosure-chevron" src="assets/icons/chevron-down.svg" alt="" width="21" height="21">
-          <span>Дополнительные фильтры</span>
-          <span class="disclosure-action"><span class="when-closed">Открыть</span><span class="when-open">Свернуть</span></span>
-        </summary>
-        <div class="advanced-filters__grid">
-          <label class="filter"><span>Тематика</span><select name="theme"><option value="">Любая тематика</option></select></label>
-          <label class="filter"><span>Производство</span><select name="production"><option value="">Любое производство</option></select></label>
-          <label class="filter"><span>Год выхода</span><select name="era"><option value="">Любой период</option></select></label>
-          <label class="filter"><span>Форматы в истории</span><select name="composition"><option value="">Все форматы</option></select></label>
-          <label class="filter"><span>Статус</span><select name="partState"><option value="">Любой статус</option></select></label>
-        </div>
-      </details>
       <div class="selection-tools">
         <p id="match-count" role="status" aria-live="polite"></p>
         <button class="text-button" type="button">Сбросить фильтры</button>

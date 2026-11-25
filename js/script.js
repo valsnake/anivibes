@@ -1,13 +1,3 @@
-const filterKeys = ['genre', 'type', 'mood', 'duration', 'theme', 'production', 'era', 'composition', 'partState'];
-
-function filterAnime(list, filters) {
-  return list.filter((anime) => {
-    return filterKeys.every((key) => {
-      return !filters[key] || anime.filters[key].includes(filters[key]);
-    });
-  });
-}
-
 function getRandomAnime(list, currentId) {
   if (list.length === 0) return null;
   const otherAnime = list.filter((anime) => anime.id !== currentId);
@@ -86,22 +76,10 @@ function renderLibrary() {
     updateCount();
   }
 
-  for (const key of filterKeys) {
-    const values = [...new Set(animeList.flatMap((anime) => anime.filters[key]))];
-    for (const value of values) {
-      const option = document.createElement('option');
-      option.value = value;
-      option.textContent = value;
-      selectionForm.querySelector('[name="' + key + '"]').append(option);
-    }
-  }
+  createFilterFields(selectionForm, animeList, document.querySelector('#random-button'));
 
   function readFilters() {
-    const filters = {};
-    for (const key of filterKeys) {
-      filters[key] = selectionForm.querySelector('[name="' + key + '"]').value;
-    }
-    return filters;
+    return getFilterValues(selectionForm);
   }
 
   function updateCount() {
@@ -147,9 +125,7 @@ function renderLibrary() {
   });
 
   function resetFilters() {
-    for (const key of filterKeys) {
-      selectionForm.querySelector('[name="' + key + '"]').value = '';
-    }
+    resetFilterValues(selectionForm);
     selectAnime();
     status.textContent = 'Фильтры сброшены. Показана рекомендация без ограничений.';
   }

@@ -47,22 +47,14 @@ function renderCatalog(list) {
 const catalogFilters = document.querySelector('#catalog-filters');
 
 if (catalogFilters) {
-  for (const key of filterKeys) {
-    const values = [...new Set(animeList.flatMap((anime) => anime.filters[key]))];
-    for (const value of values) {
-      const option = document.createElement('option');
-      option.value = value;
-      option.textContent = value;
-      catalogFilters.querySelector('[name="' + key + '"]').append(option);
-    }
-  }
+  createFilterFields(
+    catalogFilters,
+    animeList,
+    catalogFilters.querySelector('.selection-tools')
+  );
 
   function readCatalogFilters() {
-    const filters = {};
-    for (const key of filterKeys) {
-      filters[key] = catalogFilters.querySelector('[name="' + key + '"]').value;
-    }
-    return filters;
+    return getFilterValues(catalogFilters);
   }
 
   function updateCatalog() {
@@ -71,11 +63,11 @@ if (catalogFilters) {
   }
 
   catalogFilters.addEventListener('change', updateCatalog);
+
   document.querySelector('#reset-catalog').addEventListener('click', () => {
-    for (const key of filterKeys) {
-      catalogFilters.querySelector('[name="' + key + '"]').value = '';
-    }
+    resetFilterValues(catalogFilters);
     updateCatalog();
   });
+
   updateCatalog();
 }

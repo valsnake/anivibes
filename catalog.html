@@ -32,11 +32,28 @@
     <h1 class="page-title">Каталог аниме</h1>
 
     <!-- Сетка фильтров -->
-    <section class="filter-panel glass" aria-label="Место для фильтров">
-      <div class="filter-placeholder"><span>Жанры</span><div class="placeholder-control" aria-hidden="true"></div></div>
-      <div class="filter-placeholder"><span>Тип</span><div class="placeholder-control" aria-hidden="true"></div></div>
-      <div class="filter-placeholder"><span>Настроение</span><div class="placeholder-control" aria-hidden="true"></div></div>
-      <div class="filter-placeholder"><span>Длительность</span><div class="placeholder-control" aria-hidden="true"></div></div>
+    <section id="catalog-filters" class="filter-panel glass" aria-label="Фильтры каталога">
+      <label class="filter"><span>Жанры</span><select name="genre"><option value="">Любой жанр</option></select></label>
+      <label class="filter"><span>Тип</span><select name="type"><option value="">Любой тип</option></select></label>
+      <label class="filter"><span>Настроение</span><select name="mood"><option value="">Любое</option></select></label>
+      <label class="filter"><span>Длительность</span><select name="duration"><option value="">Любая</option></select></label>
+      <details class="advanced-filters glass">
+        <summary>
+          <img class="disclosure-chevron" src="assets/icons/chevron-down.svg" alt="" width="21" height="21">
+          <span>Дополнительные фильтры</span>
+          <span class="disclosure-action"><span class="when-closed">Открыть</span><span class="when-open">Свернуть</span></span>
+        </summary>
+        <div class="advanced-filters__grid">
+          <label class="filter"><span>Тематика</span><select name="theme"><option value="">Любая тематика</option></select></label>
+          <label class="filter"><span>Производство</span><select name="production"><option value="">Любое производство</option></select></label>
+          <label class="filter"><span>Год выхода</span><select name="era"><option value="">Любой период</option></select></label>
+          <label class="filter"><span>Форматы в истории</span><select name="composition"><option value="">Все форматы</option></select></label>
+          <label class="filter"><span>Статус</span><select name="partState"><option value="">Любой статус</option></select></label>
+        </div>
+      </details>
+      <div class="selection-tools">
+        <button id="reset-catalog" class="text-button" type="button">Сбросить фильтры</button>
+      </div>
     </section>
 
     <p id="catalog-count" class="catalog-count"></p>

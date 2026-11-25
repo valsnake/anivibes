@@ -40,7 +40,7 @@ function renderCatalog(list) {
     grid.append(createCatalogCard(anime));
   }
 
-  document.querySelector('#catalog-count').textContent = 'Всего аниме: ' + list.length;
+  document.querySelector('#catalog-count').textContent = 'Найдено: ' + list.length + ' из ' + animeList.length;
   document.querySelector('#catalog-empty').hidden = list.length > 0;
 }
 

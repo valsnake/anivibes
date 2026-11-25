@@ -44,6 +44,38 @@ function renderCatalog(list) {
   document.querySelector('#catalog-empty').hidden = list.length > 0;
 }
 
-if (document.querySelector('#catalog-grid')) {
-  renderCatalog(animeList);
+const catalogFilters = document.querySelector('#catalog-filters');
+
+if (catalogFilters) {
+  for (const key of filterKeys) {
+    const values = [...new Set(animeList.flatMap((anime) => anime.filters[key]))];
+    for (const value of values) {
+      const option = document.createElement('option');
+      option.value = value;
+      option.textContent = value;
+      catalogFilters.querySelector('[name="' + key + '"]').append(option);
+    }
+  }
+
+  function readCatalogFilters() {
+    const filters = {};
+    for (const key of filterKeys) {
+      filters[key] = catalogFilters.querySelector('[name="' + key + '"]').value;
+    }
+    return filters;
+  }
+
+  function updateCatalog() {
+    const matches = filterAnime(animeList, readCatalogFilters());
+    renderCatalog(matches);
+  }
+
+  catalogFilters.addEventListener('change', updateCatalog);
+  document.querySelector('#reset-catalog').addEventListener('click', () => {
+    for (const key of filterKeys) {
+      catalogFilters.querySelector('[name="' + key + '"]').value = '';
+    }
+    updateCatalog();
+  });
+  updateCatalog();
 }

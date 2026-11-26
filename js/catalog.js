@@ -21,13 +21,19 @@ function createCatalogCard(anime) {
   description.className = 'catalog-card__description';
   description.textContent = anime.description;
 
+  const detailsLink = document.createElement('a');
+  detailsLink.className = 'catalog-card__details button button--outline';
+  detailsLink.href = 'anime.html?id=' + encodeURIComponent(anime.id);
+  detailsLink.textContent = 'Подробнее';
+  detailsLink.setAttribute('aria-label', 'Подробнее об аниме «' + anime.title + '»');
+
   const genre = document.createElement('p');
   genre.className = 'catalog-card__genre';
   genre.textContent = anime.genre;
 
   const copy = document.createElement('div');
   copy.className = 'catalog-card__copy';
-  copy.append(title, meta, description, genre);
+  copy.append(title, meta, description, genre, detailsLink);
   card.append(poster, copy);
   return card;
 }

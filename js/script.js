@@ -96,7 +96,7 @@ function renderLibrary() {
     updateCardButtons();
     status.textContent = currentAnime
       ? 'Подобрано: ' + currentAnime.title
-      : 'По выбранным условиям ничего не найдено в учебном наборе.';
+      : 'По выбранным условиям ничего не найдено.';
   }
 
   selectionForm.addEventListener('change', () => {

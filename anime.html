@@ -7,18 +7,20 @@
     <meta name="description"
     content="Карточка аниме со своим настроением и жанром."/>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/anime.css">
+  <link rel="stylesheet" href="css/footer.css">
   <script src="js/script.js" defer></script>
 </head>
-<body>
+<body id="top">
   <a class="skip-link" href="#main-content">Перейти к содержимому</a>
 
   <header class="site-header container glass">
+    <div class="header-search-placeholder" aria-hidden="true"></div>
+
     <a class="brand" href="index.html" aria-label="ANIVIBES — главная">
       <img src="assets/images/logo.svg" alt="ANIVIBES" width="2012" height="475">
     </a>
-
-    <!-- Форма поиска с подсказками -->
-    <div class="header-search-placeholder" aria-hidden="true"></div>
 
     <nav class="site-nav" aria-label="Основная навигация">
       <a href="index.html">Подбор</a>
@@ -62,9 +64,37 @@
     </section>
   </main>
 
-  <footer class="site-footer container">
-    <p>ANIVIBES · <span id="current-year">2026</span></p>
-    <p>Автор проекта · VAL POLOZ</p>
+  <footer class="site-footer container glass">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-dice" aria-hidden="true">
+          <img class="footer-die-front" src="assets/images/footer-die-front.png" alt="" width="1254" height="1254">
+        </div>
+        <a class="footer-logo" href="index.html" aria-label="ANIVIBES — на главную">
+          <img src="assets/images/logo.svg" alt="ANIVIBES" width="2012" height="475">
+        </a>
+      </div>
+
+      <p class="footer-tagline">Твоё аниме на вечер</p>
+
+      <nav class="footer-links" aria-label="Ссылки в подвале">
+        <a href="https://github.com/valsnake/anivibes" target="_blank" rel="noopener noreferrer">
+          <img src="assets/icons/github.svg" alt="" width="20" height="20">GitHub
+        </a>
+        <a href="https://t.me/valsnakee" target="_blank" rel="noopener noreferrer">
+          <img src="assets/icons/telegram.svg" alt="" width="20" height="20">Telegram
+        </a>
+        <details class="footer-about">
+          <summary>О проекте</summary>
+          <p>ANIVIBES помогает выбрать аниме на вечер: настройте фильтры или доверьтесь случайному подбору.</p>
+        </details>
+      </nav>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© <span id="current-year">2026</span> ANIVIBES</p>
+      <p>Автор проекта · VAL POLOZ</p>
+    </div>
   </footer>
 </body>
 </html>

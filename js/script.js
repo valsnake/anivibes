@@ -1,7 +1,6 @@
-function getRandomAnime(list, currentId) {
-  if (list.length === 0) return null;
-  const otherAnime = list.filter((anime) => anime.id !== currentId);
-  const choices = otherAnime.length > 0 ? otherAnime : list;
+function getRandomAnime(list, shownIds) {
+  const choices = list.filter((anime) => !shownIds.has(anime.id));
+  if (choices.length === 0) return null;
   return choices[Math.floor(Math.random() * choices.length)];
 }
 
@@ -31,6 +30,8 @@ if (selectionForm) {
   const watchButton = document.querySelector('#watch-anime');
   const previousButton = document.querySelector('#previous-anime');
   const nextButton = document.querySelector('#next-anime');
+  const restartButton = document.querySelector('#restart-button');
+  const shown = new Set(currentAnime ? [currentAnime.id] : []);
 
   function updateCardButtons() {
     const saved = currentAnime !== null && lists.saved.includes(currentAnime.id);
@@ -81,42 +82,73 @@ function renderLibrary() {
   }
 
   createFilterFields(selectionForm, animeList, document.querySelector('#random-button'));
+  let appliedFilters = readFilters();
 
   function readFilters() {
     return getFilterValues(selectionForm);
   }
 
-  function updateCount() {
+  function getMatches(filters) {
     const available = animeList.filter((anime) => !lists.watched.includes(anime.id));
-    const matches = filterAnime(available, readFilters());
+    return filterAnime(available, filters);
+  }
+
+  function updateCount() {
+    const matches = getMatches(readFilters());
     count.textContent = 'Подходит: ' + matches.length + ' из ' + animeList.length;
     return matches;
   }
 
-  function selectAnime() {
+  function selectAnime(startOver = false) {
+    const filters = readFilters();
+    if (startOver || currentAnime === null || JSON.stringify(filters) !== JSON.stringify(appliedFilters)) {
+      shown.clear();
+    }
+    appliedFilters = filters;
     const matches = updateCount();
-    currentAnime = getRandomAnime(matches, currentAnime ? currentAnime.id : null);
+
+    if (matches.length === 0) {
+      currentAnime = null;
+      restartButton.hidden = true;
+      renderAnime(currentAnime);
+      updateCardButtons();
+      status.textContent = 'По выбранным условиям ничего не найдено.';
+      return;
+    }
+
+    const nextAnime = getRandomAnime(matches, shown);
+    if (nextAnime === null) {
+      restartButton.hidden = false;
+      status.textContent = 'Все подходящие варианты уже показаны. Можно начать заново или изменить условия.';
+      updateCardButtons();
+      return;
+    }
+
+    currentAnime = nextAnime;
+    shown.add(currentAnime.id);
+    restartButton.hidden = true;
     renderAnime(currentAnime);
     updateCardButtons();
-    status.textContent = currentAnime
-      ? 'Подобрано: ' + currentAnime.title
-      : 'По выбранным условиям ничего не найдено.';
+    status.textContent = matches.length === 1
+      ? 'По этим условиям найден один вариант.'
+      : 'Подобрано: ' + currentAnime.title;
   }
 
   function updateNavigationButtons() {
-    const canSwitch = updateCount().length > 1;
+    const canSwitch = getMatches(appliedFilters).length > 1;
     previousButton.disabled = !canSwitch;
     nextButton.disabled = !canSwitch;
   }
 
   function switchAnime(direction) {
-    const matches = updateCount();
+    const matches = getMatches(appliedFilters);
     if (matches.length < 2) return;
     const currentIndex = matches.findIndex((anime) => anime.id === currentAnime?.id);
     const nextIndex = currentIndex === -1
       ? (direction === 1 ? 0 : matches.length - 1)
       : (currentIndex + direction + matches.length) % matches.length;
     currentAnime = matches[nextIndex];
+    shown.add(currentAnime.id);
     renderAnime(currentAnime);
     updateCardButtons();
     status.textContent = 'Подобрано: ' + currentAnime.title;
@@ -126,11 +158,12 @@ function renderLibrary() {
   nextButton.addEventListener('click', () => switchAnime(1));
 
   selectionForm.addEventListener('change', () => {
-    updateNavigationButtons();
+    updateCount();
     status.textContent = 'Условия изменены. Нажмите «Подобрать аниме», чтобы обновить карточку.';
   });
 
-  document.querySelector('#random-button').addEventListener('click', selectAnime);
+  document.querySelector('#random-button').addEventListener('click', () => selectAnime());
+  restartButton.addEventListener('click', () => selectAnime(true));
 
   saveButton.addEventListener('click', () => {
     if (!currentAnime) return;
@@ -152,8 +185,7 @@ function renderLibrary() {
 
   function resetFilters() {
     resetFilterValues(selectionForm);
-    selectAnime();
-    status.textContent = 'Фильтры сброшены. Показана рекомендация без ограничений.';
+    selectAnime(true);
   }
 
   selectionForm.querySelector('.text-button').addEventListener('click', resetFilters);

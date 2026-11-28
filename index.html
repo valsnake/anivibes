@@ -48,9 +48,16 @@
           <h2 id="featured-title">Монолог фармацевта</h2>
           <p id="anime-description">Маомао оказывается при императорском дворе и раскрывает опасные тайны благодаря знаниям о лекарствах и ядах.</p>
           <p id="featured-meta" class="recommendation-meta">Сериал · Драма</p>
-          <div class="recommendation-actions">
+          <div class="recommendation-library" role="group" aria-label="Мои списки">
             <button id="save-anime" class="button button--outline" type="button" aria-pressed="false">Отложить</button>
             <button id="watch-anime" class="button button--outline" type="button" aria-pressed="false">Просмотрено</button>
+          </div>
+          <div class="recommendation-actions">
+            <a id="anime-details-link" class="button button--outline" href="anime.html?id=anime-the-apothecary-diaries">Подробнее<img src="assets/icons/chevron-right.svg" alt="" width="18" height="18"></a>
+            <div class="recommendation-navigation" role="group" aria-label="Переключение рекомендаций">
+              <button id="previous-anime" class="button button--outline" type="button" aria-label="Предыдущее аниме"><img src="assets/icons/chevron-left.svg" alt="" width="18" height="18"></button>
+              <button id="next-anime" class="button button--outline" type="button" aria-label="Следующее аниме"><img src="assets/icons/chevron-right.svg" alt="" width="18" height="18"></button>
+            </div>
           </div>
         </div>
       </article>

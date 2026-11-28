@@ -18,6 +18,7 @@ function renderAnime(anime) {
   document.querySelector('#featured-title').textContent = anime.title;
   document.querySelector('#anime-description').textContent = anime.description;
   document.querySelector('#featured-meta').textContent = anime.type + ' · ' + anime.year + ' · ' + anime.genre;
+  document.querySelector('#anime-details-link').href = 'anime.html?id=' + encodeURIComponent(anime.id);
 }
 
 const selectionForm = document.querySelector('#selection-form');
@@ -28,6 +29,8 @@ if (selectionForm) {
   const count = document.querySelector('#match-count');
   const saveButton = document.querySelector('#save-anime');
   const watchButton = document.querySelector('#watch-anime');
+  const previousButton = document.querySelector('#previous-anime');
+  const nextButton = document.querySelector('#next-anime');
 
   function updateCardButtons() {
     const saved = currentAnime !== null && lists.saved.includes(currentAnime.id);
@@ -38,6 +41,7 @@ if (selectionForm) {
     watchButton.textContent = watched ? 'Снять отметку просмотра' : 'Просмотрено';
     saveButton.setAttribute('aria-pressed', String(saved));
     watchButton.setAttribute('aria-pressed', String(watched));
+    updateNavigationButtons();
   }
 
   function renderList(kind) {
@@ -99,8 +103,30 @@ function renderLibrary() {
       : 'По выбранным условиям ничего не найдено.';
   }
 
+  function updateNavigationButtons() {
+    const canSwitch = updateCount().length > 1;
+    previousButton.disabled = !canSwitch;
+    nextButton.disabled = !canSwitch;
+  }
+
+  function switchAnime(direction) {
+    const matches = updateCount();
+    if (matches.length < 2) return;
+    const currentIndex = matches.findIndex((anime) => anime.id === currentAnime?.id);
+    const nextIndex = currentIndex === -1
+      ? (direction === 1 ? 0 : matches.length - 1)
+      : (currentIndex + direction + matches.length) % matches.length;
+    currentAnime = matches[nextIndex];
+    renderAnime(currentAnime);
+    updateCardButtons();
+    status.textContent = 'Подобрано: ' + currentAnime.title;
+  }
+
+  previousButton.addEventListener('click', () => switchAnime(-1));
+  nextButton.addEventListener('click', () => switchAnime(1));
+
   selectionForm.addEventListener('change', () => {
-    updateCount();
+    updateNavigationButtons();
     status.textContent = 'Условия изменены. Нажмите «Подобрать аниме», чтобы обновить карточку.';
   });
 
